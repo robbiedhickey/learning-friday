@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: node-hostname-lb
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: robbie-node.k8s.alliedelec.com
+    external-dns.alpha.kubernetes.io/hostname: robbie.k8s.alliedelec.com
 spec:
   type: LoadBalancer
   selector:
