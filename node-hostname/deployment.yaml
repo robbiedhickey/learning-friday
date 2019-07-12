@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-hostname-lb
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: robbie-node.k8s.alliedelec.com
+spec:
+  type: LoadBalancer
+  selector:
+    app: node-hostname
+  ports:
+  - port: 80 
+    name: http
+    targetPort: 80 
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: node-hostname-deployment
+spec:
+  template:
+    metadata:
+      labels:
+        app: node-hostname
+    spec:
+      containers:
+      - name: node-hostname 
+        image: thadiggitystank/node-hostname:latest
+        ports:
+        - containerPort: 80
