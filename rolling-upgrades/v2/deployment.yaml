@@ -45,4 +45,4 @@ spec:
             path: /
             port: 80
       imagePullSecrets:
-        - name: quay
+        - name: allied-private-registry
