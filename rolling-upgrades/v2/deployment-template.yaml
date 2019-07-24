@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ENTER_SERVICE_NAME
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: ENTER_DOMAIN_NAME # must be sub record of k8s.alliedelec.com
+spec:
+  type: LoadBalancer
+  selector:
+    app: ENTER_POD_NAME
+  ports:
+  - port: 80 
+    name: http
+    targetPort: 80 
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ENTER_DEPLOYMENT_NAME
+spec:
+  template:
+    metadata:
+      labels:
+        app: ENTER_POD_NAME
+    spec:
+      containers:
+      - name: ENTER_POD_NAME
+        image: thadiggitystank/node-hostname:latest
+        ports:
+        - containerPort: 80
