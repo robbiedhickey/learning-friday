@@ -29,6 +29,14 @@ spec:
     spec:
       containers:
       - name: node-hostname 
-        image: thadiggitystank/node-hostname:latest
+        image: quay.io/allied-electronics/node-hostname:rolling-upgrade
         ports:
         - containerPort: 80
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 80
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
